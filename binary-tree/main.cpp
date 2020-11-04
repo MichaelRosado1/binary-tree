@@ -22,19 +22,7 @@ struct Node {
         left = NULL;
         right = NULL;
     }
-    /*
-     I have to tweak this because it doesn't give the exact width of the tree.
-        This will work since I only need it for spacing to print the tree
-     */
-    int widthOfTree(struct Node* root) {
-        //if there isn't a tree or if the the node has no children
-        if (root == NULL) {
-            return 0;
-        }
-        else return 1 + widthOfTree(root->right) + widthOfTree(root->left);
-        
-        return 0;
-    }
+    
     //This method will print the binary tree
     void printValues(struct Node* root, int spaces =20) {
         
