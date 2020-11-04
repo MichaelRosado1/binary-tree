@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 //Struct for the Node object
 struct Node {
     //nodes contain value
@@ -35,38 +36,24 @@ struct Node {
         return 0;
     }
     //This method will print the binary tree
-//    void printTree(struct Node* root,int n, int start, bool isChild) {
-//        if (isChild) {
-//            for (int i = start; i < n; i++) {
-//                if (i == n - 1) {
-//                    std::cout<<"|\n";
-//                }
-//                std::cout<<" ";
-//            }
-//        }
-//        for (int i = start; i < n; i++) {
-//            if (i == n/2) {
-//                std::cout<<root->value<<std::endl;
-//            }
-//            std::cout<<" ";
-//        }
-//        if (root->right != NULL) {
-//            printTree(root->right,n/2,n/2, true);
-//        }
-//        if (root->left != NULL) {
-//            printTree(root->left, n/2, 0, true);
-//        }
-//        /*
-//         desired output:
-//
-//                root
-//               /    \
-//            node    node
-//           /    \   /   \
-//
-//         in order to do this we need to find width of the tree first
-//         */
-//    }
+    void printValues(struct Node* root, int spaces =20) {
+        
+        if (root != NULL) {
+            std::cout<<std::setw(spaces)<<root->value;
+            if (root->left) {
+                std::cout<<std::endl;
+                printValues(root->left, spaces - 4);
+            }
+            if (root->right) {
+                std::cout<<std::endl;
+
+                printValues(root->right, spaces + 4);
+            }
+            if (spaces != 20) {
+                std::cout<<std::setw(spaces)<<' ';
+            }
+        }
+    }
 };
 
 int main() {
@@ -77,7 +64,6 @@ int main() {
     root->left->right = new Node(5);
     root->right->left = new Node(6);
     root->right->right = new Node(7);
-    int width = root->widthOfTree(root);
-//    root->printTree(root, width, 0, false);
+    root->printValues(root);
     return 0;
 }
