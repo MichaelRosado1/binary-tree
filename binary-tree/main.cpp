@@ -24,10 +24,15 @@ struct Node {
     }
     
     int getHeight(struct Node* root) {
+        //if node isn't null
         if (root) {
+            //left node passed back to function
             int leftTreeHeight = getHeight(root->left);
+            //right node passed back to function
             int rightTreeHeight = getHeight(root->right);
+            //if the left tree height is greater than right
             if (leftTreeHeight > rightTreeHeight) {
+                //add 1
                 return leftTreeHeight + 1;
             } else {
                 return rightTreeHeight + 1;
