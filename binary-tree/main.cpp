@@ -23,10 +23,24 @@ struct Node {
         right = NULL;
     }
     
+    int getHeight(struct Node* root) {
+        if (root) {
+            int leftTreeHeight = getHeight(root->left);
+            int rightTreeHeight = getHeight(root->right);
+            if (leftTreeHeight > rightTreeHeight) {
+                return leftTreeHeight + 1;
+            } else {
+                return rightTreeHeight + 1;
+            }
+        }
+        return 0;
+    }
+    
     //This method will print the binary tree
     void printValues(struct Node* root, int spaces =20) {
         
         if (root != NULL) {
+            
             std::cout<<std::setw(spaces)<<root->value;
             if (root->left) {
                 std::cout<<std::endl;
@@ -34,8 +48,8 @@ struct Node {
             }
             if (root->right) {
                 std::cout<<std::endl;
-
                 printValues(root->right, spaces + 4);
+                
             }
             if (spaces != 20) {
                 std::cout<<std::setw(spaces)<<' ';
@@ -52,6 +66,7 @@ int main() {
     root->left->right = new Node(5);
     root->right->left = new Node(6);
     root->right->right = new Node(7);
-    root->printValues(root);
+    int x = root->getHeight(root);
+    std::cout<<x<<" ";
     return 0;
 }
